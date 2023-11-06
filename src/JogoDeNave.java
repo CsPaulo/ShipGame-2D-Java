@@ -27,8 +27,8 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
 
     public JogoDeNave() {
         try {
-            naveSprite = ImageIO.read(new File("C:\\Users\\Pedro\\OneDrive\\Documentos\\GameJava\\sprites\\nave.png"));
-            combustivelSprite = ImageIO.read(new File("C:\\Users\\Pedro\\OneDrive\\Documentos\\GameJava\\sprites\\combustivel.png"));
+            naveSprite = ImageIO.read(new File("sprites/nave.png"));
+            combustivelSprite = ImageIO.read(new File("sprites/combustivel.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
