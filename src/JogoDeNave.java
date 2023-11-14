@@ -21,14 +21,16 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
     private Random rand = new Random();
     private boolean esquerdaPressionada = false;
     private boolean direitaPressionada = false;
+    private boolean praCimaPressionada = false;
+    private boolean praBaixoPressionada = false;
     private int velocidadeNave = 5;
     private int taxaCriacaoCombustivels = 1500;
     private long ultimoCombustivelCriado = 0;
 
     public JogoDeNave() {
         try {
-            naveSprite = ImageIO.read(new File("sprites/nave.png"));
-            combustivelSprite = ImageIO.read(new File("sprites/combustivel.png"));
+            naveSprite = ImageIO.read(new File("C:\\Users\\Pedro\\ShipGame-2D-Java\\sprites\\nave.png"));
+            combustivelSprite = ImageIO.read(new File("C:\\Users\\Pedro\\ShipGame-2D-Java\\sprites\\combustivel.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,6 +77,12 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         if (direitaPressionada && naveX < larguraTela - naveSprite.getWidth()) {
             naveX += velocidadeNave;
         }
+        if(praCimaPressionada && naveY > 0){
+            naveY -= velocidadeNave;
+        }
+        if(praBaixoPressionada && naveY < alturaTela - naveSprite.getHeight()){
+            naveY += velocidadeNave;
+        }
     }
 
     private void criarCombustivel() {
@@ -116,8 +124,15 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_LEFT) {
             esquerdaPressionada = true;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
+        }
+        if (keyCode == KeyEvent.VK_RIGHT) {
             direitaPressionada = true;
+        }
+        if (keyCode == KeyEvent.VK_UP){
+            praCimaPressionada = true;
+        }
+        if (keyCode == KeyEvent.VK_DOWN) {
+            praBaixoPressionada = true;
         }
     }
 
@@ -126,8 +141,15 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_LEFT) {
             esquerdaPressionada = false;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
+        } 
+        if (keyCode == KeyEvent.VK_RIGHT) {
             direitaPressionada = false;
+        }
+        if (keyCode == KeyEvent.VK_UP){
+            praCimaPressionada = false;
+        }
+        if (keyCode == KeyEvent.VK_DOWN) {
+            praBaixoPressionada = false;
         }
     }
 
