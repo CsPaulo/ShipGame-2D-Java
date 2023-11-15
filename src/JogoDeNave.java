@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
+public class JogoDeNave extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     private int larguraTela = 400;
     private int alturaTela = 600;
     private BufferedImage naveSprite, combustivelSprite;
@@ -26,11 +26,12 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
     private int velocidadeNave = 5;
     private int taxaCriacaoCombustivels = 1500;
     private long ultimoCombustivelCriado = 0;
+    int a = 0, pontx = 0, ponty = 0, j = 0, px = 0, py = 0;
 
     public JogoDeNave() {
         try {
-            naveSprite = ImageIO.read(new File("C:\\Users\\Pedro\\ShipGame-2D-Java\\sprites\\nave.png"));
-            combustivelSprite = ImageIO.read(new File("C:\\Users\\Pedro\\ShipGame-2D-Java\\sprites\\combustivel.png"));
+            naveSprite = ImageIO.read(new File("nave.png"));
+            combustivelSprite = ImageIO.read(new File("combustivel.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,6 +39,8 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.black);
         setPreferredSize(new Dimension(larguraTela, alturaTela));
         addKeyListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
         setFocusable(true);
 
         timer = new Timer(10, this);
@@ -59,6 +62,12 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 24));
         g.drawString("Pontuação: " + pontuacao, 20, 30);
+
+        if(pontuacao == 10){
+            g.setColor(Color.white);
+            g.setFont(new Font("Arial", Font.BOLD, 24));
+            g.drawString("Parabens, você venceu", 60, 300);
+        }
     }
 
     @Override
@@ -113,7 +122,7 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
             Combustivel combustivel = iter.next();
             Rectangle combustivelRect = new Rectangle(combustivel.getX(), combustivel.getY(), combustivelSprite.getWidth(), combustivelSprite.getHeight());
             if (naveRect.intersects(combustivelRect)) {
-                iter.remove(); 
+                iter.remove();
                 pontuacao += 1;
             }
         }
@@ -157,6 +166,46 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        System.out.println("Posição do click");
+        System.out.println("X: " + me.getX() );
+        System.out.println("Y: " + me.getY());
+        System.out.println("T: " + me.paramString());
+        pontx = me.getX();
+        ponty = me.getY();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        System.out.println("Pressionado");
+    }
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        System.out.println("Solta botão");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        System.out.println("Dentro da tela");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        System.out.println("Fora da tela");
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        px = me.getX();
+        py = me.getY();
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Jogo de Nave");
         JogoDeNave game = new JogoDeNave();
@@ -165,6 +214,7 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+
 }
 
 class Combustivel {
