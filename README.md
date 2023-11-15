@@ -9,7 +9,7 @@ mais elementos ao jogo para deixar ele mais dinâmico e desafiador.
 
 ## Sprites
 <img src="sprites/naveREADME.png" width = 100, height = 100/>
-<img src="sprites/CombustivelREADME.png" width = 100, height = 100/>
+<img src="sprites/combustivelREADME.png" width = 100, height = 100/>
 
 
 ## Funcionalidades importantes
