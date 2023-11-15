@@ -8,8 +8,8 @@ fizemos ele de acordo com a proposta que o professor passou. Porém, iremos adic
 mais elementos ao jogo para deixar ele mais dinâmico e desafiador.
 
 ## Sprites
-![NaveSprite](sprites/nave.png)
-![CombustivelSprite](sprites/combustivel.png)
+<img src="sprites/naveREADME.png" width = 100, height = 100/>
+<img src="sprites/CombustivelREADME.png" width = 100, height = 100/>
 
 
 ## Funcionalidades importantes
