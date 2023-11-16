@@ -92,6 +92,11 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener, M
         if(praBaixoPressionada && naveY < alturaTela - naveSprite.getHeight()){
             naveY += velocidadeNave;
         }
+
+        if (px >= 0 && px <= larguraTela - naveSprite.getWidth() && py >= 0 && py <= alturaTela - naveSprite.getHeight()) {
+        naveX = px - (naveSprite.getWidth() / 2);
+        naveY = py - (naveSprite.getHeight() / 2);
+        }
     }
 
     private void criarCombustivel() {
