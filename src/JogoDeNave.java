@@ -63,11 +63,11 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener, M
         g.setFont(new Font("Arial", Font.BOLD, 24));
         g.drawString("Pontuação: " + pontuacao, 20, 30);
 
-        if(pontuacao == 10){
+        /*if(pontuacao == 10){
             g.setColor(Color.white);
             g.setFont(new Font("Arial", Font.BOLD, 24));
             g.drawString("Parabens, você venceu", 60, 300);
-        }
+        }*/
     }
 
     @Override
@@ -91,11 +91,6 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener, M
         }
         if(praBaixoPressionada && naveY < alturaTela - naveSprite.getHeight()){
             naveY += velocidadeNave;
-        }
-
-        if (px >= 0 && px <= larguraTela - naveSprite.getWidth() && py >= 0 && py <= alturaTela - naveSprite.getHeight()) {
-        naveX = px - (naveSprite.getWidth() / 2);
-        naveY = py - (naveSprite.getHeight() / 2);
         }
     }
 
@@ -202,13 +197,23 @@ public class JogoDeNave extends JPanel implements ActionListener, KeyListener, M
 
     @Override
     public void mouseDragged(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void mouseMoved(MouseEvent me) {
         px = me.getX();
         py = me.getY();
+        if (naveSprite != null) {
+            int novoX = me.getX() - (naveSprite.getWidth() / 2);
+            int novoY = me.getY() - (naveSprite.getHeight() / 2);
+
+            if (novoX >= 0 && novoX <= larguraTela - naveSprite.getWidth() &&
+                novoY >= 0 && novoY <= alturaTela - naveSprite.getHeight()) {
+                naveX = novoX;
+                naveY = novoY;
+            }
+        }
     }
 
     public static void main(String[] args) {
